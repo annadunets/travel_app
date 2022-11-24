@@ -1,0 +1,19 @@
+{% extends "tr_app/base.html" %}
+{% load bootstrap4 %}
+
+{% block page_header %}
+	<h1><a href="{ url 'tr_app:city' city.id }">City</a></h1>
+{% endblock page_header %}
+
+{% block content %}
+	<p>Add a new attraction:</p>
+
+	<form class="form" action="{% url 'tr_app:new_attraction' city.id %}" method='post'>
+		{% csrf_token %}
+		{% bootstrap_form form %}
+        {% buttons %}
+		    <button class="btn btn-outline-secondary" name='submit'>Add attraction</button>
+		{% endbuttons %}
+	</form>
+
+{% endblock content %}

@@ -1,0 +1,49 @@
+{% extends 'tr_app/base.html' %}
+
+
+{% block page_header %}
+    <h3 style="display: inline; margin-right: 20px;">{{ city }}</h3>
+	<a href="{% url 'tr_app:edit_city' city.id %}"  ><img src="/media/images/edit.png" style="width: 15px;" /></a>
+	<a href="{% url 'tr_app:delete_city' city.id %}" ><img src="/media/images/delete.png" style="width: 15px;" /></a>
+
+	
+	
+	{% if weather.cod != '404' %}
+	    <p>Temperatute now: {{ weather.main.temp }} C</p>
+        <p>Feels like {{ weather.main.feels_like }} C</p>
+	{% endif %}
+{% endblock page_header %}
+
+
+
+
+{% block content %}
+
+
+<p>
+	<a href="{% url 'tr_app:new_attraction' city.id %}">Add new attraction</a>
+</p>
+
+
+
+
+{% for attraction in attractions %}		
+	<div class="card mb-3">
+		<h4 class="card-header">
+			<p style="display: inline; margin-right: 20px;">{{ attraction.date_added | date:'d M, Y'}}</p>
+			<small><a href="{% url 'tr_app:edit_attraction' attraction.id %}"><img src="/media/images/edit.png" style="width: 15px;" /></a></small>
+			<small><a href="{% url 'tr_app:delete_attraction' attraction.id %}"><img src="/media/images/delete.png" style="width: 15px;" /></a></small>
+		</h4>
+		<div class="card-body">
+		    <p>{{ attraction.text | linebreaks}}</p>
+		</div>
+	</div>
+
+	{% empty %}
+	<p>
+		There are no attractions for this city yet.
+	</p>
+	{% endfor %}
+	
+
+{% endblock content %}

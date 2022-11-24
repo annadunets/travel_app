@@ -1,0 +1,22 @@
+{% extends 'tr_app/base.html' %}
+
+{% block page_header %}
+    <h1>Cities I have visited</h1>
+{% endblock page_header %}
+
+{% block content %}
+<p>
+<ul>
+	{% for city in cities %}
+		<li><h3>
+				<a href="{% url 'tr_app:city' city.id %}">{{ city }}</a>
+		</h3></li>
+	{% empty %}
+		<li><h3>No cities have been added yet<h3></li>
+	{% endfor %}
+</ul>
+
+<h3><a href="{% url 'tr_app:new_city' %}">Add a new city</a><h3>
+
+</p>
+{% endblock content %}

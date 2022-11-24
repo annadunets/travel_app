@@ -1,0 +1,15 @@
+{% extends "tr_app/base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+
+    <form class="form" action="{% url 'users:register' %}" method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons %}
+            <button class="btn btn-outline-secondary" name="submit">Register</button>
+        {% endbuttons %}
+        <input type="hidden" name="next" value="{% url 'tr_app:index' %}">
+    </form>
+
+{% endblock content %}

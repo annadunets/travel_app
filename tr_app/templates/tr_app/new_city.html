@@ -1,0 +1,15 @@
+{% extends "tr_app/base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+	<p>Add a new city:</p>
+
+	<form enctype="multipart/form-data" class="form" action="{% url 'tr_app:new_city' %}" method='post'>
+		{% csrf_token %}
+		{% bootstrap_form form %}
+        {% buttons %}
+		    <button class="btn btn-outline-primary" name='submit'>Add city</button>
+	    {% endbuttons %}
+	</form>
+
+{% endblock content %}
